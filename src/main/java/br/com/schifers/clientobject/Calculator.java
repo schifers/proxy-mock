@@ -1,15 +1,15 @@
 package br.com.schifers.clientobject;
 
-import br.com.schifers.realobject.IAddition;
+import br.com.schifers.realobject.IOperation;
 
 public class Calculator {
-    private IAddition addition;
+    private final IOperation operation;
 
-    public Calculator(IAddition addition) {
-        this.addition = addition;
+    public Calculator(IOperation operation) {
+        this.operation = operation;
     }
 
     public int calculate(int a, int b) {
-        return addition.sum(a, b);
+        return operation.execute(a, b);
     }
 }

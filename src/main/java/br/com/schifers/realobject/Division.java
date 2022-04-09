@@ -1,7 +1,8 @@
 package br.com.schifers.realobject;
 
-public class Addition implements IOperation {
+public class Division implements IOperation {
+    @Override
     public int execute(int a, int b) {
-        return a + b;
+        return a / b;
     }
 }
