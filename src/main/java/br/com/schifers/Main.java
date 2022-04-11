@@ -14,7 +14,7 @@ public class Main {
         int sum1 = stubbedCalculator.calculate(10, 10);
 
         System.out.println();
-        System.out.println("Mocked: (expected 10 as result)");
+        System.out.println("Stubbed: (expected 10 as result)");
         System.out.println("a + b = " + sum1);
 
         Addition additionReal = new Addition();
