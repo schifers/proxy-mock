@@ -1,13 +1,20 @@
 package br.com.schifers.proxy;
 
+import br.com.schifers.realobject.Addition;
 import br.com.schifers.realobject.IOperation;
 
-// The proxy in this case is a mocked class
-
 public class AdditionProxy implements IOperation {
+    private IOperation addition;
+
+    public AdditionProxy(IOperation addition) {
+        this.addition = addition;
+    }
+
     @Override
     public int execute(int a, int b) {
-        // In this case, the proxy returns a mocked value
-        return 10;
+        if (addition == null) {
+            addition = new Addition();
+        }
+        return addition.execute(a, b);
     }
 }
