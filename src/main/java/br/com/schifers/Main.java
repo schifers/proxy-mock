@@ -2,6 +2,7 @@ package br.com.schifers;
 
 import br.com.schifers.clientobject.Calculator;
 import br.com.schifers.proxy.AdditionProxy;
+import br.com.schifers.realobject.Addition;
 import br.com.schifers.stub.AdditionStub;
 
 public class Main {
@@ -16,7 +17,9 @@ public class Main {
         System.out.println("Mocked: (expected 10 as result)");
         System.out.println("a + b = " + sum1);
 
-        Calculator realCalculator = new Calculator();
+        Addition additionReal = new Addition();
+
+        Calculator realCalculator = new Calculator(new AdditionProxy(additionReal));
 
         int sum2 = realCalculator.calculate(10, 20);
 
