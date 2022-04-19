@@ -25,4 +25,4 @@ This repository is intended to show up some ways to build stubs and mocks for te
 
 - Stage 3:
 
-    In the third stage, we will build mocks, instead of stubs, with te proxy class from Java.
+    In the third stage, we will build mocks, instead of stubs, with the proxy class from Java.
