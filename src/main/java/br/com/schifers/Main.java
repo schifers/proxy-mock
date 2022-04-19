@@ -1,6 +1,7 @@
 package br.com.schifers;
 
 import br.com.schifers.clientobject.Calculator;
+import br.com.schifers.mock.AdditionMock;
 import br.com.schifers.proxy.AdditionProxy;
 import br.com.schifers.realobject.Addition;
 import br.com.schifers.realobject.IOperation;
@@ -13,6 +14,7 @@ import java.lang.reflect.Proxy;
 public class Main {
     public static void main(String[] args) {
         AdditionStub additionStub = new AdditionStub();
+        AdditionMock additionMock = new AdditionMock();
         Addition additionReal = new Addition();
 
         // Real execution
@@ -43,5 +45,17 @@ public class Main {
         System.out.println();
         System.out.println("Stage 2: Java proxy (expected 10 as result)");
         System.out.println("a + b = " + sum3);
+
+        // Stage 3: Mock usage
+        InvocationHandler mockHandler = (proxy, method, args1) -> additionMock.execute((Integer) args1[0], (Integer) args1[1]);
+
+        Calculator mockedCalculator = new Calculator((IOperation) Proxy.newProxyInstance(additionMock.getClass().getClassLoader(), new Class[]{IOperation.class}, mockHandler));
+
+        int sum4 = mockedCalculator.calculate(10, 20);
+
+        System.out.println();
+        System.out.println("Stage 3: Using a mock (expected 15 as result)");
+        System.out.println("a + b = " + sum4);
+        System.out.println("expected calls: " + additionMock.getTimesCalled("execute"));
     }
 }
